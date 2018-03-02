@@ -27,53 +27,63 @@ var arr3r;
 var arr3ro;
 var arr3co;
 var empty;
-var county;
+var county = 0;
 var forHiddens;
 var res = false;
-var resu = false;
+var resultCheck = false;
 var first;
 var second;
 var alike;
+var e5;
+var r5;
+var i;
+var j;
+var cycle;
+var ro2;
+var co2;
+var x;
+var y;
+var s;
+var z;
+var co1;
+var ro1;
+var bb;
 
-function checkMatrix() {//пересмотреть
-  for (e=0; e<9; e++) {
-    for (r=0;r<9; e++) {
-      if (matrix[e][r] ===0 || matrix[e][r].length === 2 || matrix[e][r].length === 3 || matrix[e][r].length === 4 || matrix[e][r].length === 5 || matrix[e][r].length === 6 ) {
-        return true;
+function checkMatrix() {
+  res = false; //пересмотреть
+  for (e5=0; e5<9; e5++) {
+    for (r5=0;r5<9; r5++) {
+      if (matrix[e5][r5].length > 1 ) {
+       res = true;
         }
     }
   }
-}
+  }
 
 function CheckValues () {
-  var resu = false;
+  resultCheck = false;
   ww=ro;
   qq=co;
 
   for(ro=0; ro<9; ro++) {
     for (co=0;co<9;co++) {
       if(matrix[ro][co].length>1) {
-            for (var ro1=0; ro1<9; ro1++ ) { // РАЗНЫЕ СТРОКИ
+            for (ro1=0; ro1<9; ro1++ ) { // РАЗНЫЕ СТРОКИ
                 if (matrix[ro1][co].length === undefined) {
-                  for (var bb=0; bb<matrix[ro][co].length; bb++) {
+                  for (bb=0; bb<matrix[ro][co].length; bb++) {
                       if(matrix[ro][co][bb]==matrix[ro1][co]) {
 
                         matrix[ro][co].splice(bb,1);
 
                         if(matrix[ro][co].length===1) {
-                          matrix[ro][co] = matrix[ro][co][0];
-
-
-                          resu = true;
-
+                            matrix[ro][co] = matrix[ro][co][0];
+                          resultCheck = true;
                         }
-
                       }
-
                 }
               }
             }
-            for (var co1=0; co1<9; co1++ ) { // РАЗНЫЕ КОЛОНКИ
+            for (co1=0; co1<9; co1++ ) { // РАЗНЫЕ КОЛОНКИ
                 if (matrix[ro][co1].length === undefined) {
                   for (bb=0; bb<matrix[ro][co].length; bb++) {
                       if(matrix[ro][co][bb]==matrix[ro][co1]) {
@@ -82,14 +92,10 @@ function CheckValues () {
 
                         if(matrix[ro][co].length===1) {
                           matrix[ro][co] = matrix[ro][co][0];
-
-                          resu = true;
-                        }
-
-
+                              resultCheck = true;
+                          }
                       }
-
-                }
+              }
               }
             }
             if ((ro+1)%3===0) { // РАЗНЫЕ БЛОКИ
@@ -110,8 +116,8 @@ function CheckValues () {
                else {
                  arr3co = co+3;
                }
-            for(var ro2=(arr3ro-3); ro2 < arr3ro; ro2++ ){
-              for(var co2=(arr3co-3); co2<arr3co; co2++) {
+            for(ro2=(arr3ro-3); ro2 < arr3ro; ro2++ ){
+              for(co2=(arr3co-3); co2<arr3co; co2++) {
                 if (matrix[ro2][co2].length === undefined) {
                   for (bb=0; bb<matrix[ro][co].length; bb++) {
 
@@ -121,8 +127,18 @@ function CheckValues () {
 
                         if(matrix[ro][co].length===1) {
                           matrix[ro][co] = matrix[ro][co][0];
+                          if (ro == 4 && co == 1) {
 
-                          resu = true;
+                          }
+                          if (ro == 4 && co == 7) {
+
+                          }
+
+                          if (ro == 5 && co == 8) {
+
+                          }
+                          resultCheck = true;
+
                         }
 
                       }
@@ -140,10 +156,11 @@ function CheckValues () {
   }
 ro=ww;
 co=qq;
+
 }
 
 
-
+//var
 
 function Deleting () {
 if (matrix[ro][co].length>1) {
@@ -156,18 +173,16 @@ if (matrix[ro][co].length>1) {
      if (matrix[ro][co].length==1) {
 
        matrix[ro][co]=matrix[ro][co][0];
-       empty[0] = matrix[ro][co];
+
 
           CheckValues ();
-          CheckValues ();
-          CheckValues ();
-          CheckValues ();
-          CheckValues ();
-          county = 0;
-          while(resu === true) {
-            CheckValues ();
-            county ++;
-          }
+
+
+        while(resultCheck === true) {
+
+         CheckValues ();
+
+         }
 
      }
    }
@@ -281,7 +296,7 @@ function Hiddens (forRow,forCol) {
 
 
 if (empty.length===1) {
-  res = true;
+  //res
 
   for (e = forRow; e< (forRow+3); e++) {
     for(r = forCol; r<(forCol+3); r++) {
@@ -474,18 +489,18 @@ if (empty.length===1) {
 
 
 
-
+//var
 
 function Lonely(boolka) {
-var cycle =0;
+cycle =0;
 while (cycle<=81) {
-for (var i=0; i<9; i++) {
-  for (var j=0; j<9; j++) {
+for (i=0; i<9; i++) {
+  for (j=0; j<9; j++) {
     if (matrix[i][j] === 0) {
 
   numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   newNum = numbers;
-  for (var x=0; x < 9; x++ ) {
+  for (x=0; x < 9; x++ ) {
     if (matrix[x][j] === 0) {
 
       continue;
@@ -522,7 +537,7 @@ for (var i=0; i<9; i++) {
      numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
      newNum = numbers;
 
-     for (var y=0; y < 9; y++ ) {
+     for (y=0; y < 9; y++ ) {
        if (matrix[i][y] === 0) {
 
          continue;
@@ -577,8 +592,8 @@ for (var i=0; i<9; i++) {
      // в трехмерной матрице
      numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
      newNum = numbers;
-     for (var s=(arr3i-3); s < arr3i; s++ ) {
-         for (var z=(arr3j-3); z<arr3j; z++) {
+     for (s=(arr3i-3); s < arr3i; s++ ) {
+         for (z=(arr3j-3); z<arr3j; z++) {
            if (matrix[s][z] === 0) {
 
              continue;
@@ -655,31 +670,33 @@ for (var i=0; i<9; i++) {
   cycle ++;
 }
 if (boolka == 3) {
-Hiddens(0,0);
+  Hiddens(0,0);
 
-Hiddens(0,3);
+  Hiddens(0,3);
 
-Hiddens(0,6);
+  Hiddens(0,6);
 
-Hiddens(3,0);
+  Hiddens(3,0);
 
-Hiddens(3,3);
+  Hiddens(3,3);
 
-Hiddens(3,6);
+  Hiddens(3,6);
 
-Hiddens(6,0);
+  Hiddens(6,0);
 
-Hiddens(6,3);
+  Hiddens(6,3);
 
-Hiddens(6,6);
+  Hiddens(6,6);
 
-for (e = 0; e< 9; e++) {
-  HiddensInRow ();
-}
-for (r = 0; r< 9; r++) {
+  for (e = 0; e< 9; e++) {
 
-HiddensInCol ();
-}
+
+    HiddensInRow ();
+  }
+  for (r = 0; r< 9; r++) {
+
+  HiddensInCol ();
+  }
 
 
 
@@ -690,9 +707,8 @@ return matrix;
 }
 Lonely(0);
 Lonely(1);
-Lonely(3);
 //Lonely(3);
-console.log(matrix);
+
 return matrix;
 
 }
